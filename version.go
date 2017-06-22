@@ -15,22 +15,45 @@ var (
 
 	versionTemplate = `package {{.PackageName}}
 
-var (
-  GitReference = "{{.Hash}}"
-  VersionString = "{{.Version}}"
-  GitTag = "{{.GitTag}}"
-  GitBranch = "{{.GitBranch}}"
-
-  GitUsername = "{{.GitUsername}}"
-  GitUserEmail = "{{.GitUserEmail}}"
-)
-
-func Version() string {
-	return VersionString
+type versionInfo struct {
+	gitReference string
+	gitTag string
+	gitBranch string
+	gitUsername string
+	gitUserEmail string
+	versionString string
 }
 
-func BuildUser() string {
-	return GitUsername + "<" + GitUserEmail + ">"
+var (
+	Version = versionInfo {
+	  gitReference: "{{.Hash}}"
+	  versionString: "{{.Version}}"
+	  gitTag: "{{.GitTag}}"
+	  gitBranch: "{{.GitBranch}}"
+
+	  gitUsername: "{{.GitUsername}}"
+	  gitUserEmail: "{{.GitUserEmail}}"
+	}
+)
+
+func (v versionInfo) Version() string {
+	return v.versionString
+}
+
+func (v versionInfo) BuildUser() string {
+	return v.gitUsername + "<" + v.gitUserEmail + ">"
+}
+
+func (v versionInfo) GitTag() string {
+	return v.gitTag
+}
+
+func (v versionInfo) GitBranch() string {
+	return v.gitBranch
+}
+
+func (v versionInfo) GitRevision() string {
+	return v.gitReference
 }
 `
 )

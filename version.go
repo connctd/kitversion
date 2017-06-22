@@ -26,13 +26,13 @@ type versionInfo struct {
 
 var (
 	Version = versionInfo {
-	  gitReference: "{{.Hash}}"
-	  versionString: "{{.Version}}"
-	  gitTag: "{{.GitTag}}"
-	  gitBranch: "{{.GitBranch}}"
+	  gitReference: "{{.Hash}}",
+	  versionString: "{{.Version}}",
+	  gitTag: "{{.GitTag}}",
+	  gitBranch: "{{.GitBranch}}",
 
-	  gitUsername: "{{.GitUsername}}"
-	  gitUserEmail: "{{.GitUserEmail}}"
+	  gitUsername: "{{.GitUsername}}",
+	  gitUserEmail: "{{.GitUserEmail}}",
 	}
 )
 
